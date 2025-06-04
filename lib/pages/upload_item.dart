@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class UploadItemPage extends StatefulWidget {
-  const UploadItemPage({super.key});
+  // const UploadItemPage({super.key});
+  String? category, id;
+  UploadItemPage({required this.category, required this.id, super.key});
 
   @override
   State<UploadItemPage> createState() => _UploadItemPageState();
@@ -59,29 +61,32 @@ class _UploadItemPageState extends State<UploadItemPage> {
                   color: const Color.fromARGB(255, 233, 233, 249),
                 ),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
                       height: 40.0,
                     ),
-                    Container(
-                      height: 180.0,
-                      width: 180,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.black,
-                          width: 2.0,
+                    Center(
+                      child: Container(
+                        height: 180.0,
+                        width: 180,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: Colors.white,
                         ),
-                        borderRadius: BorderRadius.circular(20.0),
-                        color: Colors.white,
-                      ),
-                      child: Icon(
-                        Icons.camera_alt_outlined,
-                        size: 50.0,
-                        color: Colors.black,
+                        child: Icon(
+                          Icons.camera_alt_outlined,
+                          size: 50.0,
+                          color: Colors.black,
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 60.0,
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
@@ -90,20 +95,86 @@ class _UploadItemPageState extends State<UploadItemPage> {
                           style: AppWidget.normallinetextstyle(18.0)),
                     ),
                     SizedBox(
-                      height: 20,
+                      height: 15,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 20.0),
-                      decoration: BoxDecoration(color: Colors.white),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Item Name',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide.none,
+                      // decoration: BoxDecoration(color: Colors.white),
+                      child: Material(
+                        elevation: 5.0,
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Enter your address',
+                            hintStyle: AppWidget.normallinetextstyle(16.0)
+                                .copyWith(color: Colors.grey),
+                            prefixIcon: Icon(
+                              Icons.location_on,
+                              color: Colors.green,
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
                           ),
-                          filled: true,
-                          fillColor: Colors.white,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40.0,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Text("Enter the Quantity of item to be picked up",
+                          style: AppWidget.normallinetextstyle(18.0)),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                      // decoration: BoxDecoration(color: Colors.white),
+                      child: Material(
+                        elevation: 5.0,
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Enter the quantity',
+                            hintStyle: AppWidget.normallinetextstyle(16.0)
+                                .copyWith(color: Colors.grey),
+                            prefixIcon: Icon(
+                              Icons.inventory_2,
+                              color: Colors.green,
+                            ),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide.none,
+                            ),
+                            filled: true,
+                            fillColor: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 60.0,
+                    ),
+                    Center(
+                      child: Container(
+                        height: 55.0,
+                        width: MediaQuery.of(context).size.width * .5,
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(20.0),
+                        ),
+                        child: Center(
+                          child: Text(
+                            "Upload",
+                            textAlign: TextAlign.center,
+                            style: AppWidget.whitetextstyle(20.0).copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
                     ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recycle_app/pages/upload_item.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class HomePage extends StatefulWidget {
@@ -54,7 +55,7 @@ class _HomePageState extends State<HomePage> {
                 Center(
                   child: Image.asset(
                     "images/home.png",
-                    height: MediaQuery.of(context).size.height / 2.5,
+                    height: MediaQuery.of(context).size.height / 2.2,
                     width: MediaQuery.of(context).size.width,
                     fit: BoxFit.cover,
                   ),
@@ -80,25 +81,37 @@ class _HomePageState extends State<HomePage> {
                     scrollDirection: Axis.horizontal,
                     children: [
                       // Plastic Category
-                      Container(
-                        margin: EdgeInsets.only(right: 15.0),
-                        width: 120.0,
-                        decoration: BoxDecoration(
-                          color: Colors.green[100],
-                          borderRadius: BorderRadius.circular(20.0),
-                          border: Border.all(color: Colors.green, width: 2.0),
-                        ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset("images/plastic.png", height: 60.0),
-                            SizedBox(height: 10.0),
-                            Text("Plastic",
-                                style: AppWidget.normallinetextstyle(16.0)
-                                    .copyWith(
-                                  fontWeight: FontWeight.bold,
-                                )),
-                          ],
+                      GestureDetector(
+                        onTap: () {
+                          // Handle category selection
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => UploadItemPage(
+                                      category: "Plastic",
+                                      id: "1") // Replace with actual page
+                                  ));
+                        },
+                        child: Container(
+                          margin: EdgeInsets.only(right: 15.0),
+                          width: 120.0,
+                          decoration: BoxDecoration(
+                            color: Colors.green[100],
+                            borderRadius: BorderRadius.circular(20.0),
+                            border: Border.all(color: Colors.green, width: 2.0),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset("images/plastic.png", height: 60.0),
+                              SizedBox(height: 10.0),
+                              Text("Plastic",
+                                  style: AppWidget.normallinetextstyle(16.0)
+                                      .copyWith(
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ],
+                          ),
                         ),
                       ),
 
