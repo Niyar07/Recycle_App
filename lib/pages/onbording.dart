@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({Key? key}) : super(key: key);
+  const OnboardingPage({super.key});
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recycle_app/services/auth.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class LogIn extends StatefulWidget {
@@ -52,38 +53,43 @@ class _LogInState extends State<LogIn> {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              margin: const EdgeInsets.only(left: 45, right: 45),
-              padding: const EdgeInsets.only(left: 10),
-              child: Material(
-                elevation: 15,
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  height: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(40),
+            GestureDetector(
+              onTap: () {
+                AuthMethods().signInWithGoogle(context);
+              },
+              child: Container(
+                margin: const EdgeInsets.only(left: 45, right: 45),
+                padding: const EdgeInsets.only(left: 10),
+                child: Material(
+                  elevation: 15,
+                  borderRadius: BorderRadius.circular(20),
+                  child: Container(
+                    height: 70,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(40),
+                          ),
+                          child: Image.asset("images/google.png",
+                              height: 30, width: 30, fit: BoxFit.cover),
                         ),
-                        child: Image.asset("images/google.png",
-                            height: 30, width: 30, fit: BoxFit.cover),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Text(
-                        "Sign in with Google",
-                        style: AppWidget.whitetextstyle(22),
-                      ),
-                    ],
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Text(
+                          "Sign in with Google",
+                          style: AppWidget.whitetextstyle(22),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
