@@ -3,6 +3,7 @@ import 'package:recycle_app/pages/login.dart';
 // import 'package:recycle_app/pages/onbording.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:recycle_app/pages/upload_item.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LogIn(),
+      home: UploadItemPage(),
     );
   }
 }
