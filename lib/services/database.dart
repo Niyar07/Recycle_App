@@ -6,4 +6,18 @@ class DatabaseMethods {
   Future addUserInfo(Map<String, dynamic> userInfoMap, String id) async {
     return await _firestore.collection("users").doc(id).set(userInfoMap);
   }
+
+  Future addUserUploadItem(
+      Map<String, dynamic> userInfoMap, String id, String itemId) async {
+    return await _firestore
+        .collection("users")
+        .doc(id)
+        .collection("upload_items")
+        .doc(itemId)
+        .set(userInfoMap);
+  }
+
+  Future addAdminItem(Map<String, dynamic> userInfoMap, String id) async {
+    return await _firestore.collection("Requests").doc(id).set(userInfoMap);
+  }
 }

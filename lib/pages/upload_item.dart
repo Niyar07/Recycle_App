@@ -194,20 +194,35 @@ class _UploadItemPageState extends State<UploadItemPage> {
                     SizedBox(
                       height: 60.0,
                     ),
-                    Center(
-                      child: Container(
-                        height: 55.0,
-                        width: MediaQuery.of(context).size.width * .5,
-                        decoration: BoxDecoration(
-                          color: Colors.green,
-                          borderRadius: BorderRadius.circular(20.0),
-                        ),
-                        child: Center(
-                          child: Text(
-                            "Upload",
-                            textAlign: TextAlign.center,
-                            style: AppWidget.whitetextstyle(20.0).copyWith(
-                              fontWeight: FontWeight.bold,
+                    GestureDetector(
+                      onTap: () {
+                        // // Handle upload item action
+                        // String address = addressController.text;
+                        // String quantity = quantityController.text;
+
+                        // if (address.isNotEmpty && quantity.isNotEmpty) {
+                        //   // Call the database method to upload the item
+                        //   DatabaseMethods().addUserUploadItem({
+                        //     "address": address,
+                        //     "quantity": quantity,
+                        //   }, userId, itemId);
+                        // }
+                      },
+                      child: Center(
+                        child: Container(
+                          height: 55.0,
+                          width: MediaQuery.of(context).size.width * .5,
+                          decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Center(
+                            child: Text(
+                              "Upload",
+                              textAlign: TextAlign.center,
+                              style: AppWidget.whitetextstyle(20.0).copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
