@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                               MaterialPageRoute(
                                   builder: (context) => UploadItemPage(
                                       category: "Plastic",
-                                      id: "1") // Replace with actual page
+                                      id: "") // Replace with actual page
                                   ));
                         },
                         child: Container(
