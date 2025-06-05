@@ -14,6 +14,8 @@ class UploadItemPage extends StatefulWidget {
 }
 
 class _UploadItemPageState extends State<UploadItemPage> {
+  TextEditingController addressController = new TextEditingController();
+  TextEditingController quantityController = new TextEditingController();
   final ImagePicker _picker = ImagePicker();
   File? selectedImage;
 
@@ -123,6 +125,7 @@ class _UploadItemPageState extends State<UploadItemPage> {
                         elevation: 5.0,
                         borderRadius: BorderRadius.circular(20.0),
                         child: TextField(
+                          controller: addressController,
                           decoration: InputDecoration(
                             hintText: 'Enter your address',
                             hintStyle: AppWidget.normallinetextstyle(16.0)
@@ -158,6 +161,7 @@ class _UploadItemPageState extends State<UploadItemPage> {
                         elevation: 5.0,
                         borderRadius: BorderRadius.circular(20.0),
                         child: TextField(
+                          controller: quantityController,
                           decoration: InputDecoration(
                             hintText: 'Enter the quantity',
                             hintStyle: AppWidget.normallinetextstyle(16.0)
