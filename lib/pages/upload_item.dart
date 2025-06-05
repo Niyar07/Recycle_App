@@ -87,25 +87,37 @@ class _UploadItemPageState extends State<UploadItemPage> {
                     SizedBox(
                       height: 40.0,
                     ),
-                    Center(
-                      child: Container(
-                        height: 180.0,
-                        width: 180,
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: Colors.black,
-                            width: 2.0,
+                    selectedImage != null
+                        ? Container(
+                            height: 180,
+                            width: 180,
+                            child:
+                                Image.file(selectedImage!, fit: BoxFit.cover),
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              getImage();
+                            },
+                            child: Center(
+                              child: Container(
+                                height: 180.0,
+                                width: 180,
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                    color: Colors.black,
+                                    width: 2.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  color: Colors.white,
+                                ),
+                                child: Icon(
+                                  Icons.camera_alt_outlined,
+                                  size: 50.0,
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ),
                           ),
-                          borderRadius: BorderRadius.circular(20.0),
-                          color: Colors.white,
-                        ),
-                        child: Icon(
-                          Icons.camera_alt_outlined,
-                          size: 50.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ),
                     SizedBox(
                       height: 60.0,
                     ),
