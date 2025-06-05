@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle_app/pages/upload_item.dart';
+import 'package:recycle_app/services/shared_pref.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,7 +11,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  String? id;
+
+  getTheSharedPreference() async {
+    // This function should retrieve the user ID from shared preferences
+    // For now, we will just set a dummy value
+    id = await SharedPreferencesHelper().getUserId();
+    setState(() {});
+  }
+
+  ontheload() async {
+    // This function is called when the widget is loaded
+    // You can perform any initialization here
+    await getTheSharedPreference();
+    setState(() {
+      // Update the state if necessary
+    });
+  }
+
   @override
+  void initState() {
+    super.initState();
+    ontheload();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
@@ -89,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                               MaterialPageRoute(
                                   builder: (context) => UploadItemPage(
                                       category: "Plastic",
-                                      id: "") // Replace with actual page
+                                      id: id!) // Replace with actual page
                                   ));
                         },
                         child: Container(
