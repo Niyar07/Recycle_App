@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:recycle_app/services/widget_support.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UploadItemPage extends StatefulWidget {
   // const UploadItemPage({super.key});
@@ -11,6 +14,22 @@ class UploadItemPage extends StatefulWidget {
 }
 
 class _UploadItemPageState extends State<UploadItemPage> {
+  final ImagePicker _picker = ImagePicker();
+  File? selectedImage;
+
+  Future getImage() async {
+    var image = await _picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 50,
+    );
+
+    selectedImage = File(image!.path);
+
+    setState(() {
+      selectedImage = File(image.path);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
