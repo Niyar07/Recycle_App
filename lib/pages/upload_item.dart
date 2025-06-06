@@ -1,6 +1,10 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
+import 'package:recycle_app/services/database.dart';
+import 'package:recycle_app/services/shared_pref.dart';
 import 'package:recycle_app/services/widget_support.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -18,6 +22,17 @@ class _UploadItemPageState extends State<UploadItemPage> {
   TextEditingController quantityController = new TextEditingController();
   final ImagePicker _picker = ImagePicker();
   File? selectedImage;
+  String? id, name;
+
+  gettheSharedPref() async {
+    final sharedPrefHelper = SharedPreferencesHelper();
+    id = await sharedPrefHelper.getUserId();
+    name = await sharedPrefHelper.getUserName();
+    // Assuming you have a method to get the user ID and name from shared preferences
+    // id = await SharedPreferencesHelper.getUserId();
+    // name = await SharedPreferencesHelper.getUserName();
+    setState(() {});
+  }
 
   Future getImage() async {
     var image = await _picker.pickImage(
@@ -30,6 +45,13 @@ class _UploadItemPageState extends State<UploadItemPage> {
     setState(() {
       selectedImage = File(image.path);
     });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    gettheSharedPref();
   }
 
   @override
@@ -195,7 +217,34 @@ class _UploadItemPageState extends State<UploadItemPage> {
                       height: 60.0,
                     ),
                     GestureDetector(
-                      onTap: () {
+                      onTap: () async {
+                        if (addressController.text != "" &&
+                            quantityController.text != "") {
+                          String itemid = randomAlphaNumeric(10);
+                          Reference firebaseStorageRef = FirebaseStorage
+                              .instance
+                              .ref()
+                              .child("Items")
+                              .child(itemid + ".jpg");
+                          final UploadTask task =
+                              firebaseStorageRef.putFile(selectedImage!);
+                          var downloadUrl =
+                              await (await task).ref.getDownloadURL();
+
+                          Map<String, dynamic> addItem = {
+                            "Image": "",
+                            "Address": addressController.text,
+                            "Quantity": quantityController.text,
+                            "userId": id,
+                            "Name": name,
+                            "ItemId": itemid,
+                          };
+                          await DatabaseMethods().addUserUploadItem(
+                            addItem,
+                            id!,
+                            itemid,
+                          );
+                        }
                         // // Handle upload item action
                         // String address = addressController.text;
                         // String quantity = quantityController.text;
