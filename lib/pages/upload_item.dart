@@ -110,11 +110,16 @@ class _UploadItemPageState extends State<UploadItemPage> {
                       height: 40.0,
                     ),
                     selectedImage != null
-                        ? Container(
-                            height: 180,
-                            width: 180,
-                            child:
-                                Image.file(selectedImage!, fit: BoxFit.cover),
+                        ? Center(
+                            child: Container(
+                              height: 180,
+                              width: 180,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20.0),
+                                child: Image.file(selectedImage!,
+                                    fit: BoxFit.cover),
+                              ),
+                            ),
                           )
                         : GestureDetector(
                             onTap: () {
@@ -221,15 +226,15 @@ class _UploadItemPageState extends State<UploadItemPage> {
                         if (addressController.text != "" &&
                             quantityController.text != "") {
                           String itemid = randomAlphaNumeric(10);
-                          Reference firebaseStorageRef = FirebaseStorage
-                              .instance
-                              .ref()
-                              .child("Items")
-                              .child(itemid + ".jpg");
-                          final UploadTask task =
-                              firebaseStorageRef.putFile(selectedImage!);
-                          var downloadUrl =
-                              await (await task).ref.getDownloadURL();
+                          // Reference firebaseStorageRef = FirebaseStorage
+                          //     .instance
+                          //     .ref()
+                          //     .child("Items")
+                          //     .child(itemid + ".jpg");
+                          // final UploadTask task =
+                          //     firebaseStorageRef.putFile(selectedImage!);
+                          // var downloadUrl =
+                          //     await (await task).ref.getDownloadURL();
 
                           Map<String, dynamic> addItem = {
                             "Image": "",
@@ -259,18 +264,12 @@ class _UploadItemPageState extends State<UploadItemPage> {
                               duration: Duration(seconds: 2),
                             ),
                           );
+                          setState(() {
+                            addressController.clear();
+                            quantityController.clear();
+                            selectedImage = null;
+                          });
                         }
-                        // // Handle upload item action
-                        // String address = addressController.text;
-                        // String quantity = quantityController.text;
-
-                        // if (address.isNotEmpty && quantity.isNotEmpty) {
-                        //   // Call the database method to upload the item
-                        //   DatabaseMethods().addUserUploadItem({
-                        //     "address": address,
-                        //     "quantity": quantity,
-                        //   }, userId, itemId);
-                        // }
                       },
                       child: Center(
                         child: Container(
