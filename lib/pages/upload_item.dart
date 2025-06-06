@@ -244,6 +244,21 @@ class _UploadItemPageState extends State<UploadItemPage> {
                             id!,
                             itemid,
                           );
+                          await DatabaseMethods().addAdminItem(
+                            addItem,
+                            itemid,
+                          );
+
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              backgroundColor: Colors.green,
+                              content: Text(
+                                "Item uploaded successfully!",
+                                style: AppWidget.whitetextstyle(16.0),
+                              ),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
                         }
                         // // Handle upload item action
                         // String address = addressController.text;
