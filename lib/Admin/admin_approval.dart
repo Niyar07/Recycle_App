@@ -24,20 +24,16 @@ class _AdminApprovalState extends State<AdminApproval> {
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Row(
                     children: [
-                      Material(
-                        elevation: 3.0,
-                        borderRadius: BorderRadius.circular(60.0),
-                        child: Container(
-                          padding: const EdgeInsets.all(10.0),
-                          // margin: const EdgeInsets.all(10.0),
-                          decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          child: Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            color: Colors.white,
-                          ),
+                      Container(
+                        padding: const EdgeInsets.all(10.0),
+                        // margin: const EdgeInsets.all(10.0),
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                        child: Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          color: Colors.white,
                         ),
                       ),
                       SizedBox(width: MediaQuery.of(context).size.width / 7),
@@ -68,120 +64,121 @@ class _AdminApprovalState extends State<AdminApproval> {
                           height: 20.0,
                         ),
                         Container(
-                          margin:
-                              const EdgeInsets.only(left: 20.0, right: 20.0),
-                          width: MediaQuery.of(context).size.width,
-                          decoration: BoxDecoration(
-                            color: Colors.white,
+                          margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                          child: Material(
+                            elevation: 5.0,
                             borderRadius: BorderRadius.circular(20.0),
-                          ),
-                          child: Row(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.all(20.0),
-                                // padding: const EdgeInsets.all(10.0),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(20.0),
-                                  border: Border.all(
-                                    color: Colors.black45,
-                                    width: 1.0,
-                                  ),
-                                ),
-                                child: Image.asset(
-                                  'images/coca.png',
-                                  width: 120.0,
-                                  height: 120.0,
-                                  fit: BoxFit.fill,
-                                ),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(20.0),
                               ),
-                              SizedBox(
-                                width: 15.0,
-                              ),
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              child: Row(
                                 children: [
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.person,
-                                        color: Colors.green,
+                                  Container(
+                                    margin: const EdgeInsets.all(20.0),
+                                    // padding: const EdgeInsets.all(10.0),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20.0),
+                                      border: Border.all(
+                                        color: Colors.black45,
+                                        width: 1.0,
                                       ),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'John Doe',
-                                        style: AppWidget.headlinetextstyle(20),
-                                      ),
-                                    ],
+                                    ),
+                                    child: Image.asset(
+                                      'images/coca.png',
+                                      width: 120.0,
+                                      height: 120.0,
+                                      fit: BoxFit.fill,
+                                    ),
                                   ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.person,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Address This is the to long sentence to test the overflow of the text widget',
-                                        style: AppWidget.headlinetextstyle(20),
-                                      ),
-                                    ],
+                                  SizedBox(
+                                    width: 0.0,
                                   ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.delete,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Coca Cola',
-                                        style: AppWidget.headlinetextstyle(20),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.category,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Plastic',
-                                        style: AppWidget.headlinetextstyle(20),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.production_quantity_limits,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        '10',
-                                        style: AppWidget.headlinetextstyle(20),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: [
-                                      Icon(
-                                        Icons.pending_actions,
-                                        color: Colors.green,
-                                      ),
-                                      SizedBox(width: 10.0),
-                                      Text(
-                                        'Pending',
-                                        style: AppWidget.headlinetextstyle(20),
-                                      ),
-                                    ],
+                                  Container(
+                                    margin:
+                                        EdgeInsets.only(top: 20, bottom: 20),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.person,
+                                              color: Colors.green,
+                                            ),
+                                            SizedBox(width: 10.0),
+                                            Text(
+                                              'John Doe',
+                                              style:
+                                                  AppWidget.headlinetextstyle(
+                                                      18),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.location_on,
+                                              color: Colors.green,
+                                            ),
+                                            SizedBox(width: 10.0),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width /
+                                                  2.5,
+                                              child: Text(
+                                                'Address This is the to long sentence to test the overflow of the text widget',
+                                                style:
+                                                    AppWidget.headlinetextstyle(
+                                                        18),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.inventory,
+                                              color: Colors.green,
+                                            ),
+                                            SizedBox(width: 10.0),
+                                            Text(
+                                              '10',
+                                              style:
+                                                  AppWidget.headlinetextstyle(
+                                                      18),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 5,
+                                        ),
+                                        Container(
+                                          height: 35,
+                                          width: 200,
+                                          decoration: BoxDecoration(
+                                              color: Colors.black,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          child: Center(
+                                            child: Text(
+                                              "Approve",
+                                              style:
+                                                  AppWidget.whitetextstyle(18),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
                       ],
