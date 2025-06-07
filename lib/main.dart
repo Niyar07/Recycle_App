@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recycle_app/Admin/admin_approval.dart';
 import 'package:recycle_app/pages/home.dart';
 import 'package:recycle_app/pages/login.dart';
 // import 'package:recycle_app/pages/onbording.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: LogIn(),
+      home: AdminApproval(),
     );
   }
 }

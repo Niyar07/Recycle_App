@@ -243,6 +243,7 @@ class _UploadItemPageState extends State<UploadItemPage> {
                             "userId": id,
                             "Name": name,
                             "ItemId": itemid,
+                            "Status": "Pending",
                           };
                           await DatabaseMethods().addUserUploadItem(
                             addItem,
