@@ -27,5 +27,22 @@ class DatabaseMethods {
         .where("Status", isEqualTo: "Pending")
         .snapshots();
   }
+
+  Future updateUserRequest(String id, String itemId) async {
+    return await _firestore
+        .collection("users")
+        .doc(id)
+        .collection("upload_items")
+        .doc(itemId)
+        .set({"Status": "Approved"});
+  }
+
+  // Future updateAdminRequest(String id, String itemId) async {
+  Future updateAdminRequest(String id) async {
+    return await _firestore
+        .collection("Requests")
+        .doc(id)
+        .set({"Status": "Approved"});
+  }
 }
 //children

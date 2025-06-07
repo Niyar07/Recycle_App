@@ -129,19 +129,29 @@ class _AdminApprovalState extends State<AdminApproval> {
                                           ],
                                         ),
                                         SizedBox(height: 5),
-                                        Container(
-                                          height: 35,
-                                          width: 200,
-                                          decoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "Approve",
-                                              style:
-                                                  AppWidget.whitetextstyle(18),
+                                        GestureDetector(
+                                          onTap: () async {
+                                            // Handle approve action
+                                            await DatabaseMethods()
+                                                .updateAdminRequest(ds.id);
+                                            await DatabaseMethods()
+                                                .updateUserRequest(
+                                                    ds["uid"], ds.id);
+                                          },
+                                          child: Container(
+                                            height: 35,
+                                            width: 200,
+                                            decoration: BoxDecoration(
+                                              color: Colors.black,
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                            ),
+                                            child: Center(
+                                              child: Text(
+                                                "Approve",
+                                                style: AppWidget.whitetextstyle(
+                                                    18),
+                                              ),
                                             ),
                                           ),
                                         ),
