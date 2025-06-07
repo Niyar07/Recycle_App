@@ -98,8 +98,8 @@ class _AdminApprovalState extends State<AdminApproval> {
                                     width: 0.0,
                                   ),
                                   Container(
-                                    margin:
-                                        EdgeInsets.only(top: 20, bottom: 20),
+                                    margin: EdgeInsets.only(
+                                        top: 20, bottom: 20, right: 5),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
