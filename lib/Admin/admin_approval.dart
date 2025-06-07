@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
@@ -93,6 +95,9 @@ class _AdminApprovalState extends State<AdminApproval> {
                                   fit: BoxFit.fill,
                                 ),
                               ),
+                              SizedBox(
+                                width: 15.0,
+                              ),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -105,6 +110,19 @@ class _AdminApprovalState extends State<AdminApproval> {
                                       SizedBox(width: 10.0),
                                       Text(
                                         'John Doe',
+                                        style: AppWidget.headlinetextstyle(20),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.person,
+                                        color: Colors.green,
+                                      ),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        'Address This is the to long sentence to test the overflow of the text widget',
                                         style: AppWidget.headlinetextstyle(20),
                                       ),
                                     ],
