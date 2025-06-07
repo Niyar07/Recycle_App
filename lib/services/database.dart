@@ -20,4 +20,12 @@ class DatabaseMethods {
   Future addAdminItem(Map<String, dynamic> userInfoMap, String id) async {
     return await _firestore.collection("Requests").doc(id).set(userInfoMap);
   }
+
+  Future<Stream<QuerySnapshot>> getAdminApproval() async {
+    return await FirebaseFirestore.instance
+        .collection("Requests")
+        .where("Status", isEqualTo: "Pending")
+        .snapshots();
+  }
 }
+//children

@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:recycle_app/services/database.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class AdminApproval extends StatefulWidget {
@@ -11,6 +13,149 @@ class AdminApproval extends StatefulWidget {
 }
 
 class _AdminApprovalState extends State<AdminApproval> {
+  Stream? approvalStream;
+
+  getontheload() async {
+    approvalStream = await DatabaseMethods().getAdminApproval();
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    getontheload();
+    super.initState();
+  }
+
+  Widget allApprovals() {
+    return StreamBuilder(
+        stream: approvalStream,
+        builder: (context, AsyncSnapshot snapshot) {
+          return snapshot.hasData
+              ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot ds = snapshot.data.docs[index];
+                    return Container(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: Material(
+                        elevation: 5.0,
+                        borderRadius: BorderRadius.circular(20.0),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.all(20.0),
+                                // padding: const EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  border: Border.all(
+                                    color: Colors.black45,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                child: Image.asset(
+                                  'images/coca.png',
+                                  width: 120.0,
+                                  height: 120.0,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 0.0,
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(
+                                    top: 20, bottom: 20, right: 5),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.person,
+                                          color: Colors.green,
+                                        ),
+                                        SizedBox(width: 10.0),
+                                        Text(
+                                          'John Doe',
+                                          style:
+                                              AppWidget.headlinetextstyle(18),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.location_on,
+                                          color: Colors.green,
+                                        ),
+                                        SizedBox(width: 10.0),
+                                        Container(
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width /
+                                              2.5,
+                                          child: Text(
+                                            'Address This is the to long sentence to test the overflow of the text widget',
+                                            style:
+                                                AppWidget.headlinetextstyle(18),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: [
+                                        Icon(
+                                          Icons.inventory,
+                                          color: Colors.green,
+                                        ),
+                                        SizedBox(width: 10.0),
+                                        Text(
+                                          '10',
+                                          style:
+                                              AppWidget.headlinetextstyle(18),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 5,
+                                    ),
+                                    Container(
+                                      height: 35,
+                                      width: 200,
+                                      decoration: BoxDecoration(
+                                          color: Colors.black,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                        child: Text(
+                                          "Approve",
+                                          style: AppWidget.whitetextstyle(18),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                )
+              : Container();
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
