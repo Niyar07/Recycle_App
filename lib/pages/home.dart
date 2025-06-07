@@ -14,28 +14,31 @@ class _HomePageState extends State<HomePage> {
   String? id;
 
   getTheSharedPreference() async {
-    // This function should retrieve the user ID from shared preferences
-    // For now, we will just set a dummy value
     id = await SharedPreferencesHelper().getUserId();
     setState(() {});
   }
 
   ontheload() async {
-    // This function is called when the widget is loaded
-    // You can perform any initialization here
     await getTheSharedPreference();
-    setState(() {
-      // Update the state if necessary
-    });
+    setState(() {});
   }
 
   @override
   void initState() {
-    super.initState();
     ontheload();
+    super.initState();
+    ;
+    // getTheSharedPreference();
   }
 
   Widget build(BuildContext context) {
+    // Show loading indicator while id is loading
+    if (id == null) {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
     return Scaffold(
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
@@ -107,14 +110,11 @@ class _HomePageState extends State<HomePage> {
                       // Plastic Category
                       GestureDetector(
                         onTap: () {
-                          // Handle category selection
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => UploadItemPage(
-                                      category: "Plastic",
-                                      id: id!) // Replace with actual page
-                                  ));
+                                      category: "Plastic", id: id!)));
                         },
                         child: Container(
                           margin: EdgeInsets.only(right: 15.0),
@@ -138,9 +138,7 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-
                       // Paper Category
-
                       Container(
                         margin: EdgeInsets.only(right: 15.0),
                         width: 120.0,
@@ -162,8 +160,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-
-                      // Class Category
+                      // Glass Category
                       Container(
                         margin: EdgeInsets.only(right: 15.0),
                         width: 120.0,
@@ -185,6 +182,7 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
+                      // Electronics Category
                       Container(
                         margin: EdgeInsets.only(right: 15.0),
                         width: 120.0,
@@ -253,7 +251,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-                      // Add your pending request widgets here
                       Divider(),
                       Image.asset(
                         "images/chips.png",
