@@ -38,7 +38,7 @@ class _AdminApprovalState extends State<AdminApproval> {
                           ),
                         ),
                       ),
-                      SizedBox(width: MediaQuery.of(context).size.width / 5.5),
+                      SizedBox(width: MediaQuery.of(context).size.width / 7),
                       Text(
                         'Admin Approval',
                         style: AppWidget.headlinetextstyle(26),
@@ -61,7 +61,112 @@ class _AdminApprovalState extends State<AdminApproval> {
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [],
+                      children: [
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Container(
+                          margin:
+                              const EdgeInsets.only(left: 20.0, right: 20.0),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.all(20.0),
+                                // padding: const EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20.0),
+                                  border: Border.all(
+                                    color: Colors.black45,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                child: Image.asset(
+                                  'images/coca.png',
+                                  width: 120.0,
+                                  height: 120.0,
+                                  fit: BoxFit.fill,
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.person,
+                                        color: Colors.green,
+                                      ),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        'John Doe',
+                                        style: AppWidget.headlinetextstyle(20),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.delete,
+                                        color: Colors.green,
+                                      ),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        'Coca Cola',
+                                        style: AppWidget.headlinetextstyle(20),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.category,
+                                        color: Colors.green,
+                                      ),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        'Plastic',
+                                        style: AppWidget.headlinetextstyle(20),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.production_quantity_limits,
+                                        color: Colors.green,
+                                      ),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        '10',
+                                        style: AppWidget.headlinetextstyle(20),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.pending_actions,
+                                        color: Colors.green,
+                                      ),
+                                      SizedBox(width: 10.0),
+                                      Text(
+                                        'Pending',
+                                        style: AppWidget.headlinetextstyle(20),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
