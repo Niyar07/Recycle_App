@@ -32,8 +32,9 @@ class _AdminApprovalState extends State<AdminApproval> {
       DocumentSnapshot documentSnapshot =
           await FirebaseFirestore.instance.collection('users').doc(uid).get();
       if (documentSnapshot.exists) {
-        String userPoints = documentSnapshot['Points'].toString();
-        return userPoints;
+        var data = documentSnapshot.data() as Map<String, dynamic>;
+        var points = data['Points'];
+        return points.toString();
       } else {
         return '0';
       }
@@ -148,6 +149,13 @@ class _AdminApprovalState extends State<AdminApproval> {
                                         GestureDetector(
                                           onTap: () async {
                                             // Handle approve action
+                                            String userPoints =
+                                                await getUserPoints(ds["uid"]);
+                                            int updatedPoints =
+                                                int.parse(userPoints) + 100;
+                                            await DatabaseMethods()
+                                                .updateUserPoints(ds["uid"],
+                                                    updatedPoints.toString());
                                             await DatabaseMethods()
                                                 .updateAdminRequest(ds.id);
                                             await DatabaseMethods()

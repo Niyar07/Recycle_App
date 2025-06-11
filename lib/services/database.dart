@@ -44,5 +44,9 @@ class DatabaseMethods {
         .doc(id)
         .set({"Status": "Approved"});
   }
+
+  Future updateUserPoints(String id, String points) async {
+    return await _firestore.collection("users").doc(id).set({"Points": points});
+  }
 }
 //children
