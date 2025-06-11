@@ -27,6 +27,22 @@ class _AdminApprovalState extends State<AdminApproval> {
     super.initState();
   }
 
+  Future<String> getUserPoints(String uid) async {
+    try {
+      DocumentSnapshot documentSnapshot =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      if (documentSnapshot.exists) {
+        String userPoints = documentSnapshot['Points'].toString();
+        return userPoints;
+      } else {
+        return '0';
+      }
+    } catch (e) {
+      print("Error fetching user points: $e");
+      return '0';
+    }
+  }
+
   Widget allApprovals() {
     return StreamBuilder(
         stream: approvalStream,
