@@ -13,15 +13,17 @@ class Points extends StatefulWidget {
 }
 
 class _PointsState extends State<Points> {
-  String? id;
+  String? id, mypoints;
   getthesharedpref() async {
     // Assuming you have a method to get the user ID from shared preferences
     // Replace this with your actual implementation
     final sharedPrefHelper = SharedPreferencesHelper();
     id = await sharedPrefHelper.getUserId();
+
     setState(() {});
   }
 
+  ontheload() async {}
   final TextEditingController pointscontroller = TextEditingController();
   final TextEditingController upicontroller = TextEditingController();
 
