@@ -38,10 +38,21 @@ class _PointsState extends State<Points> {
                   ),
                   child: Column(
                     children: [
-                      Text("Earned Points",
-                          style: AppWidget.headlinetextstyle(
-                            24,
-                          )),
+                      SizedBox(height: 30),
+                      Container(
+                        padding: EdgeInsets.all(15),
+                        margin: EdgeInsets.only(left: 20, right: 20),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                        ),
+                        child: Row(
+                          children: [
+                            Image.asset("images/coin.png",
+                                height: 50, width: 50, fit: BoxFit.cover),
+                          ],
+                        ),
+                      ),
                     ],
                   )),
             ),
