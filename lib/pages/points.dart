@@ -11,6 +11,15 @@ class Points extends StatefulWidget {
 }
 
 class _PointsState extends State<Points> {
+  final TextEditingController pointscontroller = TextEditingController();
+  final TextEditingController upicontroller = TextEditingController();
+
+  @override
+  void dispose() {
+    pointscontroller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +84,31 @@ class _PointsState extends State<Points> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 30),
+                      GestureDetector(
+                        onTap: () {
+                          // Handle redeem points action
+                          openBox();
+                        },
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            width: MediaQuery.of(context).size.width / 2,
+                            child: Center(
+                              child: Text(
+                                "Redeem Points",
+                                style: AppWidget.whitetextstyle(20),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   )),
             ),
@@ -84,4 +118,99 @@ class _PointsState extends State<Points> {
       ),
     );
   }
+
+  Future openBox() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Icon(Icons.close, color: Colors.black),
+                    ),
+                    SizedBox(width: 30),
+                    Text("Redeem Points",
+                        style: AppWidget.greentextstyle(
+                          20,
+                        )),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Text("Add Points",
+                    style: AppWidget.normallinetextstyle(
+                      20,
+                    )),
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black38, width: 2.0),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    controller: pointscontroller,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Enter points to redeem",
+                      hintStyle: AppWidget.normallinetextstyle(
+                        16,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Text(
+                  "Add UPI Id",
+                  style: AppWidget.normallinetextstyle(20),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black38, width: 2.0),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: TextField(
+                    controller: upicontroller,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Enter UPI Id",
+                      hintStyle: AppWidget.normallinetextstyle(
+                        16,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
+                GestureDetector(
+                  onTap: () {
+                    // Handle redeem points action
+                  },
+                  child: Center(
+                    child: Container(
+                      // padding: EdgeInsets.all(50),
+                      padding: EdgeInsets.only(
+                          left: 20, right: 20, top: 10, bottom: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text("Add",
+                          style: AppWidget.whitetextstyle(
+                            20,
+                          )),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
 }
