@@ -20,10 +20,21 @@ class _PointsState extends State<Points> {
     final sharedPrefHelper = SharedPreferencesHelper();
     id = await sharedPrefHelper.getUserId();
 
+    setState(() async {});
+  }
+
+  ontheload() async {
+    await getthesharedpref();
+    mypoints = await getUserPoints(id!);
     setState(() {});
   }
 
-  ontheload() async {}
+  @override
+  void initState() {
+    super.initState();
+    ontheload();
+  }
+
   final TextEditingController pointscontroller = TextEditingController();
   final TextEditingController upicontroller = TextEditingController();
 
