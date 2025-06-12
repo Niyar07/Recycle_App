@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:recycle_app/Admin/admin_approval.dart';
+import 'package:recycle_app/pages/bottomnav.dart';
 import 'package:recycle_app/pages/home.dart';
 import 'package:recycle_app/pages/login.dart';
 // import 'package:recycle_app/pages/onbording.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:recycle_app/pages/points.dart';
+import 'package:recycle_app/pages/profile.dart';
 import 'package:recycle_app/pages/upload_item.dart';
 
 void main() async {
@@ -41,7 +44,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: AdminApproval(),
+      // home: Points(),
+      home: BottomNav(),
     );
   }
 }
