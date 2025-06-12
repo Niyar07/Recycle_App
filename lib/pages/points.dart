@@ -1,7 +1,9 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
+import 'package:recycle_app/services/shared_pref.dart';
 import 'package:recycle_app/services/widget_support.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Points extends StatefulWidget {
   const Points({Key? key}) : super(key: key);
@@ -11,8 +13,34 @@ class Points extends StatefulWidget {
 }
 
 class _PointsState extends State<Points> {
+  String? id;
+  getthesharedpref() async {
+    // Assuming you have a method to get the user ID from shared preferences
+    // Replace this with your actual implementation
+    final sharedPrefHelper = SharedPreferencesHelper();
+    id = await sharedPrefHelper.getUserId();
+    setState(() {});
+  }
+
   final TextEditingController pointscontroller = TextEditingController();
   final TextEditingController upicontroller = TextEditingController();
+
+  Future<String> getUserPoints(String uid) async {
+    try {
+      DocumentSnapshot documentSnapshot =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+      if (documentSnapshot.exists) {
+        var data = documentSnapshot.data() as Map<String, dynamic>;
+        var points = data['Points'];
+        return points.toString();
+      } else {
+        return '0';
+      }
+    } catch (e) {
+      print("Error fetching user points: $e");
+      return '0';
+    }
+  }
 
   @override
   void dispose() {
@@ -191,6 +219,22 @@ class _PointsState extends State<Points> {
                 GestureDetector(
                   onTap: () {
                     // Handle redeem points action
+                    if (pointscontroller.text.isNotEmpty &&
+                        upicontroller.text.isNotEmpty) {
+                      // Perform the redeem action
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Points redeemed successfully!"),
+                        ),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Please fill all fields."),
+                        ),
+                      );
+                    }
                   },
                   child: Center(
                     child: Container(
