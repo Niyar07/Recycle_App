@@ -40,17 +40,39 @@ class _PointsState extends State<Points> {
                     children: [
                       SizedBox(height: 30),
                       Container(
-                        padding: EdgeInsets.all(15),
-                        margin: EdgeInsets.only(left: 20, right: 20),
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          children: [
-                            Image.asset("images/coin.png",
-                                height: 50, width: 50, fit: BoxFit.cover),
-                          ],
+                        margin: EdgeInsets.only(left: 50, right: 50),
+                        child: Material(
+                          elevation: 5.0,
+                          borderRadius: BorderRadius.circular(20),
+                          child: Container(
+                            padding: EdgeInsets.all(15),
+                            width: MediaQuery.of(context).size.width,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              children: [
+                                Image.asset("images/coin.png",
+                                    height: 60, width: 60, fit: BoxFit.cover),
+                                SizedBox(
+                                  width: 50,
+                                ),
+                                Column(
+                                  children: [
+                                    Text("Points Earned",
+                                        style: AppWidget.normallinetextstyle(
+                                          20,
+                                        )),
+                                    Text("300",
+                                        style: AppWidget.greentextstyle(
+                                          30,
+                                        )),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ],
