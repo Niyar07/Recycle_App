@@ -205,6 +205,21 @@ class _PointsState extends State<Points> {
                                       ),
                                     ],
                                   ),
+                                  SizedBox(
+                                    width: 30.0,
+                                  ),
+                                  Container(
+                                      padding: EdgeInsets.all(8),
+                                      decoration: BoxDecoration(
+                                          color: const Color.fromARGB(
+                                              72, 252, 114, 104)),
+                                      child: Text(
+                                        "Pending",
+                                        style: TextStyle(
+                                            color: Colors.red,
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      )),
                                 ],
                               ),
                             ),
