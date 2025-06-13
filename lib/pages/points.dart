@@ -4,6 +4,7 @@ import 'package:recycle_app/services/database.dart';
 import 'package:recycle_app/services/shared_pref.dart';
 import 'package:recycle_app/services/widget_support.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:intl/intl.dart';
 
 class Points extends StatefulWidget {
   const Points({Key? key}) : super(key: key);
@@ -145,6 +146,52 @@ class _PointsState extends State<Points> {
                         ),
                       ),
                     ),
+                    SizedBox(height: 20),
+                    Expanded(
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30))),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              "Last Transactions",
+                              style: AppWidget.normallinetextstyle(20),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(left: 20, right: 20),
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 233, 233, 249)),
+                              child: Row(
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.only(left: 20, right: 20),
+                                    decoration:
+                                        BoxDecoration(color: Colors.black),
+                                    child: Text(
+                                      "04\nMar",
+                                      textAlign: TextAlign.center,
+                                      style: AppWidget.whitetextstyle(20.0),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -223,6 +270,9 @@ class _PointsState extends State<Points> {
                       int currentPoints = int.tryParse(mypoints) ?? 0;
                       int redeemPoints =
                           int.tryParse(pointscontroller.text) ?? 0;
+
+                      DateTime now = DateTime.now();
+                      String formattedDate = DateFormat('d MMM').format(now);
                       if (currentPoints >= redeemPoints && redeemPoints > 0) {
                         int updatedpoints = currentPoints - redeemPoints;
                         await DatabaseMethods()
@@ -235,7 +285,8 @@ class _PointsState extends State<Points> {
                           "Name": name,
                           "Points": pointscontroller.text,
                           "UPI": upicontroller.text,
-                          "Status": " Pending"
+                          "Status": " Pending",
+                          "Date": formattedDate,
                         };
 
                         String reedemid = randomAlphaNumeric(10);
