@@ -168,21 +168,25 @@ class _PointsState extends State<Points> {
                               height: 20,
                             ),
                             Container(
+                              padding: EdgeInsets.all(10),
                               margin: EdgeInsets.only(left: 20, right: 20),
                               width: MediaQuery.of(context).size.width,
                               decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 233, 233, 249)),
+                                  color: Color.fromARGB(255, 233, 233, 249),
+                                  borderRadius: BorderRadius.circular(20)),
                               child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
-                                    margin:
-                                        EdgeInsets.only(left: 20, right: 20),
-                                    decoration:
-                                        BoxDecoration(color: Colors.black),
+                                    padding: EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
                                     child: Text(
                                       "04\nMar",
                                       textAlign: TextAlign.center,
-                                      style: AppWidget.whitetextstyle(20.0),
+                                      style: AppWidget.whitetextstyle(18.0),
                                     ),
                                   ),
                                 ],
