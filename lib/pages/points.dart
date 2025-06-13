@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:random_string/random_string.dart';
 import 'package:recycle_app/services/database.dart';
 import 'package:recycle_app/services/shared_pref.dart';
 import 'package:recycle_app/services/widget_support.dart';
@@ -12,7 +13,7 @@ class Points extends StatefulWidget {
 }
 
 class _PointsState extends State<Points> {
-  String? id;
+  String? id, name;
   String mypoints = '0';
   bool isLoading = true;
 
@@ -31,6 +32,7 @@ class _PointsState extends State<Points> {
       String? points = await getUserPoints(id!);
       mypoints = (points == null || points == 'null') ? '0' : points;
     }
+    name = await SharedPreferencesHelper().getUserName();
     setState(() {
       isLoading = false;
     });
@@ -228,6 +230,21 @@ class _PointsState extends State<Points> {
                         setState(() {
                           mypoints = updatedpoints.toString();
                         });
+
+                        Map<String, dynamic> userReedemMap = {
+                          "Name": name,
+                          "Points": pointscontroller.text,
+                          "UPI": upicontroller.text,
+                          "Status": " Pending"
+                        };
+
+                        String reedemid = randomAlphaNumeric(10);
+
+                        await DatabaseMethods()
+                            .addUserReedemPoints(userReedemMap, id!, reedemid);
+                        await DatabaseMethods()
+                            .addAdminReedemRequest(userReedemMap, reedemid);
+
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

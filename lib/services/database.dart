@@ -48,5 +48,20 @@ class DatabaseMethods {
   Future updateUserPoints(String id, String points) async {
     return await _firestore.collection("users").doc(id).set({"Points": points});
   }
+
+  Future addUserReedemPoints(
+      Map<String, dynamic> userInfoMap, String id, String reedemid) async {
+    return await _firestore
+        .collection("users")
+        .doc(id)
+        .collection("Reedem")
+        .doc(reedemid)
+        .set(userInfoMap);
+  }
+
+  Future addAdminReedemRequest(
+      Map<String, dynamic> userInfoMap, String reedemid) async {
+    return await _firestore.collection("Reedem").doc(reedemid).set(userInfoMap);
+  }
 }
 //children
