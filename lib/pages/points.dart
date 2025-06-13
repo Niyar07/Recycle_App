@@ -189,6 +189,22 @@ class _PointsState extends State<Points> {
                                       style: AppWidget.whitetextstyle(18.0),
                                     ),
                                   ),
+                                  SizedBox(
+                                    width: 20,
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Reedem Ponts",
+                                        style:
+                                            AppWidget.normallinetextstyle(18),
+                                      ),
+                                      Text(
+                                        "100",
+                                        style: AppWidget.greentextstyle(24),
+                                      ),
+                                    ],
+                                  ),
                                 ],
                               ),
                             ),
