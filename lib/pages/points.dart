@@ -206,18 +206,20 @@ class _PointsState extends State<Points> {
                                     ],
                                   ),
                                   SizedBox(
-                                    width: 30.0,
+                                    width: 55.0,
                                   ),
                                   Container(
                                       padding: EdgeInsets.all(8),
                                       decoration: BoxDecoration(
                                           color: const Color.fromARGB(
-                                              72, 252, 114, 104)),
+                                              72, 252, 114, 104),
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
                                       child: Text(
                                         "Pending",
                                         style: TextStyle(
                                             color: Colors.red,
-                                            fontSize: 20,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.bold),
                                       )),
                                 ],
