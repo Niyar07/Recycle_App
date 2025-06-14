@@ -210,16 +210,21 @@ class _AdminApprovalState extends State<AdminApproval> {
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(10.0),
-                        // margin: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(40.0),
-                        ),
-                        child: Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          // margin: const EdgeInsets.all(10.0),
+                          decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(40.0),
+                          ),
+                          child: Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       SizedBox(width: MediaQuery.of(context).size.width / 7),
