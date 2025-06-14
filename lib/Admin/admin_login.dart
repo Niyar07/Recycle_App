@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:recycle_app/Admin/admin_approval.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class AdminLogin extends StatefulWidget {
@@ -9,6 +11,9 @@ class AdminLogin extends StatefulWidget {
 }
 
 class _AdminLoginState extends State<AdminLogin> {
+  final TextEditingController usernamecontroller = TextEditingController();
+  final TextEditingController userpasswordcontroller = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +43,7 @@ class _AdminLoginState extends State<AdminLogin> {
                 padding: EdgeInsets.all(10),
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(135, 156, 248, 165),
+                  color: const Color.fromARGB(134, 171, 241, 178),
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(30),
                       topRight: Radius.circular(30)),
@@ -73,6 +78,7 @@ class _AdminLoginState extends State<AdminLogin> {
                             borderRadius: BorderRadius.all(Radius.circular(10)),
                           ),
                           child: TextField(
+                            controller: usernamecontroller,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Enter Username",
@@ -107,11 +113,9 @@ class _AdminLoginState extends State<AdminLogin> {
                         elevation: 5.0,
                         borderRadius: BorderRadius.all(Radius.circular(10)),
                         child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.all(Radius.circular(10)),
-                          ),
                           child: TextField(
+                            controller: userpasswordcontroller,
+                            obscureText: true,
                             decoration: InputDecoration(
                                 border: InputBorder.none,
                                 hintText: "Enter Password",
@@ -125,7 +129,7 @@ class _AdminLoginState extends State<AdminLogin> {
                       ),
                     ),
                     SizedBox(
-                      height: 50.0,
+                      height: 40.0,
                     ),
                     Center(
                       child: Container(
@@ -151,5 +155,33 @@ class _AdminLoginState extends State<AdminLogin> {
         ),
       ),
     );
+  }
+
+  LoginAdmin() {
+    FirebaseFirestore.instance.collection("Admin").get().then((snapshot) {
+      snapshot.docs.forEach((result) {
+        if (result.data()['id'] != usernamecontroller.text.trim()) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              "Your id is not correct.",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ));
+        } else if (result.data()['password'] !=
+            userpasswordcontroller.text.trim()) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+              "Your password is not correct.",
+              style: TextStyle(fontSize: 18.0),
+            ),
+          ));
+        } else {
+          // Replace 'AdminHomePage()' with your actual admin home widget
+          Route route =
+              MaterialPageRoute(builder: (context) => AdminApproval());
+          Navigator.pushReplacement(context, route);
+        }
+      });
+    });
   }
 }
