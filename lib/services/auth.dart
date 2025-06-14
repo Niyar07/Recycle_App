@@ -6,6 +6,15 @@ import 'package:recycle_app/services/database.dart';
 import 'package:recycle_app/services/shared_pref.dart';
 
 class AuthMethods {
+  Future SignOut() async {
+    await FirebaseAuth.instance.signOut();
+  }
+
+  Future deleteuser() async {
+    User? user = await FirebaseAuth.instance.currentUser;
+    user?.delete();
+  }
+
   signInWithGoogle(BuildContext context) async {
     final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
     final GoogleSignIn googleSignIn = GoogleSignIn();
