@@ -58,23 +58,6 @@ This solution can be especially impactful when used at the **municipal**, **scho
 
 ---
 
-## 📁 Folder Structure
-
-lib/
-├── Admin/
-│ ├── admin_home.dart
-│ ├── admin_approval.dart
-│ └── admin_reedem.dart
-├── pages/
-│ ├── points.dart
-│ └── profile.dart
-├── services/
-│ ├── auth.dart
-│ ├── database.dart
-│ ├── shared_pref.dart
-│ └── widget_support.dart
-└── main.dart
-
 
 ---
 
@@ -95,6 +78,7 @@ lib/
 3. **Run dependencies**
    ```bash
    flutter pub get
+   flutter run
 
 
-flutter run
+
