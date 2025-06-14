@@ -133,7 +133,9 @@ class _AdminLoginState extends State<AdminLogin> {
                       height: 40.0,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        LoginAdmin();
+                      },
                       child: Center(
                         child: Container(
                           width: 200,
@@ -189,7 +191,7 @@ class _AdminLoginState extends State<AdminLogin> {
           ));
         } else {
           // Replace 'AdminHomePage()' with your actual admin home widget
-          Route route = MaterialPageRoute(builder: (context) => HomeAdmin());
+          Route route = MaterialPageRoute(builder: (context) => AdminHome());
           Navigator.pushReplacement(context, route);
         }
       });
