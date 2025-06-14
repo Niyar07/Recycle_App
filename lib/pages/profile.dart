@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();

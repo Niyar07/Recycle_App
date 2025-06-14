@@ -22,14 +22,14 @@ class DatabaseMethods {
   }
 
   Future<Stream<QuerySnapshot>> getAdminApproval() async {
-    return await FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection("Requests")
         .where("Status", isEqualTo: "Pending")
         .snapshots();
   }
 
   Future<Stream<QuerySnapshot>> getAdminReedemApproval() async {
-    return await FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection("Reedem")
         .where("Status", isEqualTo: "Pending")
         .snapshots();
@@ -72,7 +72,7 @@ class DatabaseMethods {
   }
 
   Future<Stream<QuerySnapshot>> getUserTransactions(String id) async {
-    return await FirebaseFirestore.instance
+    return FirebaseFirestore.instance
         .collection("users")
         .doc(id)
         .collection("Reedem")
