@@ -58,8 +58,13 @@ class _AdminReedemState extends State<AdminReedem> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Add your widgets here, for example:
-                      // Text('No items yet'),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(color: Colors.white),
+                        child: Row(
+                          children: [],
+                        ),
+                      ),
                     ],
                   ),
                 ),
