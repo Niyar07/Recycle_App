@@ -49,6 +49,34 @@ class _ProfileState extends State<Profile> {
                     child: Container(
                   padding: EdgeInsets.only(left: 20.0, right: 20.0),
                   width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 233, 233, 249),
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Center(
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(80),
+                          child: Image.network(
+                            image!,
+                            height: 140,
+                            width: 140,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                    ],
+                  ),
                 ))
               ],
             ),
