@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:recycle_app/Admin/admin_approval.dart';
+import 'package:recycle_app/Admin/home_admin.dart';
 import 'package:recycle_app/services/widget_support.dart';
 
 class AdminLogin extends StatefulWidget {
@@ -131,18 +132,21 @@ class _AdminLoginState extends State<AdminLogin> {
                     SizedBox(
                       height: 40.0,
                     ),
-                    Center(
-                      child: Container(
-                        width: 200,
-                        height: 50,
-                        decoration: BoxDecoration(
-                            color: Colors.black,
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(15))),
-                        child: Center(
-                          child: Text(
-                            "LogIn",
-                            style: AppWidget.whitetextstyle(24.0),
+                    GestureDetector(
+                      onTap: () {},
+                      child: Center(
+                        child: Container(
+                          width: 200,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              color: Colors.black,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(15))),
+                          child: Center(
+                            child: Text(
+                              "LogIn",
+                              style: AppWidget.whitetextstyle(24.0),
+                            ),
                           ),
                         ),
                       ),
@@ -162,23 +166,30 @@ class _AdminLoginState extends State<AdminLogin> {
       snapshot.docs.forEach((result) {
         if (result.data()['id'] != usernamecontroller.text.trim()) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.red,
             content: Text(
               "Your id is not correct.",
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
           ));
         } else if (result.data()['password'] !=
             userpasswordcontroller.text.trim()) {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            backgroundColor: Colors.red,
             content: Text(
               "Your password is not correct.",
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
           ));
         } else {
           // Replace 'AdminHomePage()' with your actual admin home widget
-          Route route =
-              MaterialPageRoute(builder: (context) => AdminApproval());
+          Route route = MaterialPageRoute(builder: (context) => HomeAdmin());
           Navigator.pushReplacement(context, route);
         }
       });
