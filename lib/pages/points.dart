@@ -108,20 +108,20 @@ class _PointsState extends State<Points> {
                                 ],
                               ),
                               SizedBox(
-                                width: 55.0,
+                                width: 30.0,
                               ),
                               Container(
                                   padding: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                      color: ds["Status"] == "Approved"
+                                      color: ds["Status"].trim() == "Approved"
                                           ? Color.fromARGB(0, 134, 248, 108)
                                           : const Color.fromARGB(
                                               72, 252, 114, 104),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Text(
-                                    ds["Status"],
+                                    ds["Status"].trim(),
                                     style: TextStyle(
-                                        color: ds["Status"] == "Approved"
+                                        color: ds["Status"].trim() == "Approved"
                                             ? Colors.green
                                             : Colors.red,
                                         fontSize: 18,
@@ -338,7 +338,7 @@ class _PointsState extends State<Points> {
                           int.tryParse(pointscontroller.text) ?? 0;
 
                       DateTime now = DateTime.now();
-                      String formattedDate = DateFormat('d\nMMM').format(now);
+                      String formattedDate = DateFormat('d MMM').format(now);
                       if (currentPoints >= redeemPoints && redeemPoints > 0) {
                         int updatedpoints = currentPoints - redeemPoints;
                         await DatabaseMethods()
@@ -351,14 +351,17 @@ class _PointsState extends State<Points> {
                           "Name": name,
                           "Points": pointscontroller.text,
                           "UPI": upicontroller.text,
-                          "Status": " Pending",
+                          "Status": "Pending",
                           "Date": formattedDate,
+                          "UserID": id,
                         };
 
                         String reedemid = randomAlphaNumeric(10);
 
+                        // Add to user's subcollection
                         await DatabaseMethods()
                             .addUserReedemPoints(userReedemMap, id!, reedemid);
+                        // Add to root Reedem collection for admin
                         await DatabaseMethods()
                             .addAdminReedemRequest(userReedemMap, reedemid);
 

@@ -46,8 +46,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: Points(),
-      // home: BottomNav(),
-      home: AdminReedem(),
+      home: BottomNav(),
+      // home: AdminReedem(),
     );
   }
 }

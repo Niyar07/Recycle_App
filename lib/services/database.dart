@@ -41,19 +41,37 @@ class DatabaseMethods {
         .doc(id)
         .collection("upload_items")
         .doc(itemId)
-        .set({"Status": "Approved"});
+        .update({"Status": "Approved"});
   }
 
-  // Future updateAdminRequest(String id, String itemId) async {
+  Future updateUserReedemRequest(String id, String itemId) async {
+    return await _firestore
+        .collection("users")
+        .doc(id)
+        .collection("Reedem")
+        .doc(itemId)
+        .update({"Status": "Approved"});
+  }
+
   Future updateAdminRequest(String id) async {
     return await _firestore
         .collection("Requests")
         .doc(id)
-        .set({"Status": "Approved"});
+        .update({"Status": "Approved"});
+  }
+
+  Future updateAdminReedemRequest(String id) async {
+    return await _firestore
+        .collection("Reedem")
+        .doc(id)
+        .update({"Status": "Approved"});
   }
 
   Future updateUserPoints(String id, String points) async {
-    return await _firestore.collection("users").doc(id).set({"Points": points});
+    return await _firestore
+        .collection("users")
+        .doc(id)
+        .update({"Points": points});
   }
 
   Future addUserReedemPoints(
@@ -79,4 +97,3 @@ class DatabaseMethods {
         .snapshots();
   }
 }
-//children
