@@ -28,6 +28,13 @@ class DatabaseMethods {
         .snapshots();
   }
 
+  Future<Stream<QuerySnapshot>> getAdminReedemApproval() async {
+    return await FirebaseFirestore.instance
+        .collection("Reedem")
+        .where("Status", isEqualTo: "Pending")
+        .snapshots();
+  }
+
   Future updateUserRequest(String id, String itemId) async {
     return await _firestore
         .collection("users")

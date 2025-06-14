@@ -113,13 +113,17 @@ class _PointsState extends State<Points> {
                               Container(
                                   padding: EdgeInsets.all(8),
                                   decoration: BoxDecoration(
-                                      color: const Color.fromARGB(
-                                          72, 252, 114, 104),
+                                      color: ds["Status"] == "Approved"
+                                          ? Color.fromARGB(0, 134, 248, 108)
+                                          : const Color.fromARGB(
+                                              72, 252, 114, 104),
                                       borderRadius: BorderRadius.circular(10)),
                                   child: Text(
                                     ds["Status"],
                                     style: TextStyle(
-                                        color: Colors.red,
+                                        color: ds["Status"] == "Approved"
+                                            ? Colors.green
+                                            : Colors.red,
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold),
                                   )),

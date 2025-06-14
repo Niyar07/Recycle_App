@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:recycle_app/Admin/admin_approval.dart';
+import 'package:recycle_app/Admin/admin_reedem.dart';
 import 'package:recycle_app/pages/bottomnav.dart';
 import 'package:recycle_app/pages/home.dart';
 import 'package:recycle_app/pages/login.dart';
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       // home: Points(),
-      home: BottomNav(),
+      // home: BottomNav(),
+      home: AdminReedem(),
     );
   }
 }
