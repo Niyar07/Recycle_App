@@ -63,5 +63,13 @@ class DatabaseMethods {
       Map<String, dynamic> userInfoMap, String reedemid) async {
     return await _firestore.collection("Reedem").doc(reedemid).set(userInfoMap);
   }
+
+  Future<Stream<QuerySnapshot>> getUserTransactions(String id) async {
+    return await FirebaseFirestore.instance
+        .collection("users")
+        .doc(id)
+        .collection("Reedem")
+        .snapshots();
+  }
 }
 //children

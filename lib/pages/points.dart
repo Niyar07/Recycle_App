@@ -17,6 +17,7 @@ class _PointsState extends State<Points> {
   String? id, name;
   String mypoints = '0';
   bool isLoading = true;
+  Stream? pointsStream;
 
   final TextEditingController pointscontroller = TextEditingController();
   final TextEditingController upicontroller = TextEditingController();
@@ -34,6 +35,8 @@ class _PointsState extends State<Points> {
       mypoints = (points == null || points == 'null') ? '0' : points;
     }
     name = await SharedPreferencesHelper().getUserName();
+
+    pointsStream = await DatabaseMethods().getUserTransactions(id!);
     setState(() {
       isLoading = false;
     });
@@ -56,6 +59,82 @@ class _PointsState extends State<Points> {
     }
   }
 
+  Widget allApprovals() {
+    return StreamBuilder(
+        stream: pointsStream,
+        builder: (context, AsyncSnapshot snapshot) {
+          return snapshot.hasData
+              ? ListView.builder(
+                  padding: EdgeInsets.zero,
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, index) {
+                    DocumentSnapshot ds = snapshot.data.docs[index];
+                    return Column(
+                      children: [
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          margin: EdgeInsets.only(left: 20, right: 20),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 233, 233, 249),
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: Text(
+                                  ds["Date"],
+                                  textAlign: TextAlign.center,
+                                  style: AppWidget.whitetextstyle(18.0),
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20,
+                              ),
+                              Column(
+                                children: [
+                                  Text(
+                                    "Reedem Ponts",
+                                    style: AppWidget.normallinetextstyle(18),
+                                  ),
+                                  Text(
+                                    ds["Points"],
+                                    style: AppWidget.greentextstyle(24),
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                width: 55.0,
+                              ),
+                              Container(
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                      color: const Color.fromARGB(
+                                          72, 252, 114, 104),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Text(
+                                    ds["Status"],
+                                    style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                            ],
+                          ),
+                        ),
+                        SizedBox(height: 16.0), // <-- Add space between cards
+                      ],
+                    );
+                  },
+                )
+              : Container();
+        });
+  }
+
   @override
   void dispose() {
     pointscontroller.dispose();
@@ -71,6 +150,7 @@ class _PointsState extends State<Points> {
       );
     }
     return Scaffold(
+      resizeToAvoidBottomInset: true,
       body: Container(
         margin: EdgeInsets.only(top: 40.0),
         child: Column(
@@ -79,7 +159,7 @@ class _PointsState extends State<Points> {
               child:
                   Text("Points Page", style: AppWidget.headlinetextstyle(26)),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 15),
             Expanded(
               child: Container(
                 width: MediaQuery.of(context).size.width,
@@ -91,7 +171,7 @@ class _PointsState extends State<Points> {
                 ),
                 child: Column(
                   children: [
-                    SizedBox(height: 30),
+                    SizedBox(height: 15),
                     Container(
                       margin: EdgeInsets.only(left: 50, right: 50),
                       child: Material(
@@ -122,7 +202,7 @@ class _PointsState extends State<Points> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 20),
                     GestureDetector(
                       onTap: () {
                         openBox();
@@ -168,63 +248,8 @@ class _PointsState extends State<Points> {
                               height: 20,
                             ),
                             Container(
-                              padding: EdgeInsets.all(10),
-                              margin: EdgeInsets.only(left: 20, right: 20),
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                  color: Color.fromARGB(255, 233, 233, 249),
-                                  borderRadius: BorderRadius.circular(20)),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: [
-                                  Container(
-                                    padding: EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                        color: Colors.black,
-                                        borderRadius:
-                                            BorderRadius.circular(10)),
-                                    child: Text(
-                                      "04\nMar",
-                                      textAlign: TextAlign.center,
-                                      style: AppWidget.whitetextstyle(18.0),
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 20,
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        "Reedem Ponts",
-                                        style:
-                                            AppWidget.normallinetextstyle(18),
-                                      ),
-                                      Text(
-                                        "100",
-                                        style: AppWidget.greentextstyle(24),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    width: 55.0,
-                                  ),
-                                  Container(
-                                      padding: EdgeInsets.all(8),
-                                      decoration: BoxDecoration(
-                                          color: const Color.fromARGB(
-                                              72, 252, 114, 104),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      child: Text(
-                                        "Pending",
-                                        style: TextStyle(
-                                            color: Colors.red,
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.bold),
-                                      )),
-                                ],
-                              ),
-                            ),
+                                height: MediaQuery.of(context).size.height / 2,
+                                child: allApprovals()),
                           ],
                         ),
                       ),
@@ -309,7 +334,7 @@ class _PointsState extends State<Points> {
                           int.tryParse(pointscontroller.text) ?? 0;
 
                       DateTime now = DateTime.now();
-                      String formattedDate = DateFormat('d MMM').format(now);
+                      String formattedDate = DateFormat('d\nMMM').format(now);
                       if (currentPoints >= redeemPoints && redeemPoints > 0) {
                         int updatedpoints = currentPoints - redeemPoints;
                         await DatabaseMethods()
